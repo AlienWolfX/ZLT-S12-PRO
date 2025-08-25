@@ -45,6 +45,19 @@ export TZUSER_WEB_SENIOR_USER_PWD_RANDOM_WAY="5"
 
 It is the same as with the General user but the password generation is very complex
 
+#### Show Hidden Settings
+
+> [!NOTE]
+> This is temporary and after every reset, the device will revert back to being locked.
+
+The current Senior user is restricted to a certain level. We need to change the level to '1' for it to work. You need to find `api.lua` and edit it as follows:
+
+```lua
+elseif (userSign == 'TZ_SUPER_USERNAME') then
+	tz_answer["auth"] = web_info["web_operator_show_hide_pref"]
+    tz_answer["level"] = "2"
+```
+
 ### Contact Me
 
 Email: cruizallen2@gmail.com
