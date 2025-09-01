@@ -2,5 +2,9 @@
 ZLT_S12_Pro-Debrick/*
 notes.txt
 scripts/config/*
-scripts/*
-files/*
+scripts/obsolete/*
+logs/*
+scripts/payload/*
+*.bin
+*.so
+config.json

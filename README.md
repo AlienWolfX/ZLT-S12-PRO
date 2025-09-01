@@ -58,6 +58,10 @@ elseif (userSign == 'TZ_SUPER_USERNAME') then
     tz_answer["level"] = "2"
 ```
 
+#### TODO
+
+    - Permanently show hidden superadmin settings
+
 ### Contact Me
 
 Email: cruizallen2@gmail.com
