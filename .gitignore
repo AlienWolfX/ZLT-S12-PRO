@@ -1,6 +1,6 @@
-.venv/*
-ZLT_S12_Pro-Debrick/*
+scripts/.venv/*
 notes.txt
+script_reverse/*
 scripts/config/*
 scripts/obsolete/*
 logs/*
@@ -8,3 +8,4 @@ scripts/payload/*
 *.bin
 *.so
 config.json
+files/*

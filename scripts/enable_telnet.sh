@@ -1,7 +1,10 @@
 #!/bin/sh
 
-read -p 'Username: ' USERNAME
-read -sp 'Password: ' PASSWORD
+# read -p 'Username: ' USERNAME
+# read -sp 'Password: ' PASSWORD
+USERNAME='admin'
+PASSWORD='Globe@63C3'
+
 echo
 
 PASSWORD_HASH=$(printf ${PASSWORD} | md5sum | awk '{print $1}')
