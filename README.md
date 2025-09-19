@@ -1,6 +1,6 @@
 # ZLT-S12-PRO
 
-A repository for password cracking of TOZED S12 PRO (Philippines) working with latest versions (Doesn't require flashing)
+A repository of Information regarding TOZED S12 PRO (Philippines)
 
 > [!NOTE]
 > I haven't tested my findings yet with devices outside Philippines but in theory it should work.
@@ -15,40 +15,12 @@ The device has three types of users: **Web User**, who has limited access to the
 
 ### Param file
 
-The tozed-param file holds the critical configuration for generating password for each user and some other device settings, I'm not gonna dive with the other stuff as we will mainly focus in password generation of the two accounts **Tech** and **Senior**
-
-#### General
-
-```bash
-export TZUSER_WEB_GENERAL_USER_NAME="tech"
-export TZUSER_WEB_GENERAL_USER_PWD_RANDOM="y"
-export TZUSER_WEB_GENERAL_USER_PWD="@l03e1t3"
-export TZUSER_WEB_GENERAL_USER_PWD_RANDOM_WAY="4"
-```
-
-These lines of export commands are responsible for generating the password for the tech account. At first glance, you might think the password would be **@l03e1t3**, as stated in `export TZUSER_WEB_GENERAL_USER_PWD="@l03e1t3"`. However, you would be mistaken. Based on `export TZUSER_WEB_GENERAL_USER_PWD_RANDOM="y"`, PWD_RANDOM is set to **y**, which overwrites the specified password for the general user.
-
-In theory, you can change it to **n**, set your own USER_PWD, and remove the line `export TZUSER_WEB_GENERAL_USER_PWD_RANDOM_WAY="4"`. However, I haven't tested this yet, so it's up to you to explore. Be aware that doing so will require you to reflash the device, which increases the risk of bricking it.
-
-Holding on to **4** this is a parameter sent to a function which determines the way of password generation heres a chart visualizing the process:
-
-![Tech Generation](images/tech.png)
-
-#### Senior
-
-```bash
-export TZUSER_WEB_SENIOR_USER_NAME="superadmin"
-export TZUSER_WEB_SENIOR_USER_PWD_RANDOM="y"
-export TZUSER_WEB_SENIOR_USER_PWD="12345678"
-export TZUSER_WEB_SENIOR_USER_PWD_RANDOM_WAY="5"
-```
-
-It is the same as with the General user but the password generation is very complex
+The tozed-param file holds the critical configuration for generating password for each user and some other device settings.
 
 #### Show Hidden Settings
 
 > [!NOTE]
-> This is temporary and after every reset, the device will revert back to being locked.
+> I managed to make it permanent :D
 
 The current Senior user is restricted to a certain level. We need to change the level to '1' for it to work. You need to find `api.lua` and edit it as follows:
 
@@ -58,12 +30,54 @@ elseif (userSign == 'TZ_SUPER_USERNAME') then
     tz_answer["level"] = "2"
 ```
 
-#### TODO
+### Telnet Access
 
-    - Permanently show hidden superadmin settings
+This section details the telnet password generation algorithm that was discovered through reverse engineering.
+
+#### Password Generation Algorithm
+
+The router uses a deterministic algorithm based on the device's IMEI number to generate telnet access passwords:
+
+1. Key characteristics:
+   - Uses digits from the IMEI starting at index 7
+   - Processes 8 consecutive digits to generate an 8-digit password
+   - Employs a rolling accumulator algorithm
+
+2. Implementation details:
+
+   ```python
+   # For IMEI: "867792xxxxxxxxx"
+   # Uses substring: "xxxxxxxxx"
+   
+   accumulator = 0
+   for i in range(8):
+       digit = int(imei[7+i])
+       accumulator = i + accumulator + digit
+       password[i] = (accumulator % 10) + '0'
+   ```
+
+#### Usage
+
+A Python script (`scripts/generate_telnet_pass.py`) is provided to generate telnet passwords:
+
+- Takes an IMEI number as input
+- Extracts the relevant digits (positions 7-14)
+- Applies the accumulator algorithm
+- Outputs the 8-digit telnet password
+
+#### Security Notes
+
+- Password generation is deterministic
+- Only requires knowledge of device IMEI
+- No additional entropy or time-based components
+- Pattern is consistent across device reboots
+- IMEI must be exactly 15 digits
+- Generated password is always 8 digits long
 
 ### Contact Me
 
-Email: cruizallen2@gmail.com
+Email: [cruizallen2@gmail.com](mailto:cruizallen2@gmail.com)
 
-<p align="center">Copyright <b>Allen Cruiz</b> 2025</p>
+### Copyright
+
+Copyright Allen Cruiz 2025

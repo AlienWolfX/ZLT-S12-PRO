@@ -9,3 +9,4 @@ scripts/payload/*
 *.so
 config.json
 files/*
+dump_reverse/*

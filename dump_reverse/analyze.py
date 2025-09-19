@@ -18,7 +18,7 @@ def find_rootfs_partition(firmware_path):
                 chunk = f.read(chunk_size)
                 if not chunk:
                     break
-                
+
                 squash_pos = chunk.find(SQUASHFS_MAGIC)
                 if squash_pos != -1:
                     abs_pos = offset + squash_pos
