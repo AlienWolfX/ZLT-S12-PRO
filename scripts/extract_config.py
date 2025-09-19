@@ -121,7 +121,7 @@ def create_mtd7(original_mtd7, modified_config_file, output_file):
 
 if __name__ == "__main__":
     base_dir = os.path.dirname(__file__)
-    dump_dir = os.path.join(base_dir, "zlt_dump")
+    dump_dir = os.path.join("dump_reverse", "zlt_dump")
     
     
     original_mtd7 = os.path.join(dump_dir, "mtd7_tozed-conf.bin")

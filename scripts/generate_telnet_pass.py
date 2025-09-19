@@ -19,7 +19,7 @@ def generate_telnet_password(imei):
     
     return ''.join(password_chars)
 
-imei = "{YOUR_IMEI_HERE}"
+imei = "IMEI_PLACEHOLDER"
 password = generate_telnet_password(imei)
 print(f"IMEI: {imei}")
 print(f"Using digits: {imei[7:]}")
