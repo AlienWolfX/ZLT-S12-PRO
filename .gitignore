@@ -10,3 +10,6 @@ scripts/payload/*
 config.json
 files/*
 dump_reverse/*
+.env
+*.pyc
+__pycache__/

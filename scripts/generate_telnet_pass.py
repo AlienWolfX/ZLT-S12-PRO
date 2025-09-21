@@ -1,6 +1,12 @@
 # Copyright (c) 2025 AlienWolfX
 # Generates telnet password from IMEI
 
+from dotenv import load_dotenv
+import os
+
+# Load environment variables
+load_dotenv()
+
 def generate_telnet_password(imei):
     """
     Generates telnet password by using characters from index 7 to the end of the IMEI
@@ -19,8 +25,17 @@ def generate_telnet_password(imei):
     
     return ''.join(password_chars)
 
-imei = "IMEI_PLACEHOLDER"
-password = generate_telnet_password(imei)
-print(f"IMEI: {imei}")
-print(f"Using digits: {imei[7:]}")
-print(f"Generated Password: {password}")
+def main():
+    # Get IMEI from environment variable
+    imei = os.getenv('DEVICE_IMEI')
+    if not imei:
+        print("Error: DEVICE_IMEI not found in environment variables")
+        return
+
+    password = generate_telnet_password(imei)
+    print(f"IMEI: {imei}")
+    print(f"Using digits: {imei[7:]}")
+    print(f"Generated Password: {password}")
+
+if __name__ == "__main__":
+    main()
