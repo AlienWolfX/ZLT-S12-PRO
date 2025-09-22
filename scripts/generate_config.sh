@@ -1,76 +1,83 @@
 #!/bin/sh
 # Copyright (c) 2025 AlienWolfX
-# Used to sync the modified tozed_param file to the device mtd7 partition
+# Script to sync the modified tozed_param file to the device's mtd7 partition
 
-# Error handling
-set -e  # Exit on error
-trap 'echo "Error: Script failed! Please check the output above."; exit 1' ERR
+TOZED_PARAM_URL="http://192.168.254.126:8000/tozed_param"
+TOZED_PARAM_PATH="/etc/tozed_param"
+TOZED_PARAM_CHK_PATH="/etc/tozed_param.chk"
+MTD_DEVICE="/dev/mtd7"
+MTD_CONF="tozed-conf"
 
-# Configuration
-SERVER_IP="192.168.254.126"
-SERVER_PORT="8000"
-CONFIG_FILE="tozed_param"
-MTD_PARTITION="tozed-conf"
-WAIT_TIME=2
+check_and_clean_existing_files() {
+    local has_existing=0
 
-# Helper functions
-check_mtd_empty() {
-    if hexdump -C /dev/mtd7 | head -n 1 | grep -q "00 00 00 00"; then
-        return 0
-    else
-        return 1
+    if [ -f "$TOZED_PARAM_PATH" ]; then
+        echo "✅ Found existing configuration file: $TOZED_PARAM_PATH"
+        echo "🗑️ Removing existing configuration file..."
+        rm -f "$TOZED_PARAM_PATH"
+        has_existing=1
+    fi
+
+    if [ -f "$TOZED_PARAM_CHK_PATH" ]; then
+        echo "✅ Found existing CHK file: $TOZED_PARAM_CHK_PATH"
+        echo "🗑️ Removing existing CHK file..."
+        rm -f "$TOZED_PARAM_CHK_PATH"
+        has_existing=1
+    fi
+
+    if [ $has_existing -eq 1 ]; then
+        echo "🧹 Cleaned up existing files"
     fi
 }
 
-# Download configuration
-echo "[1/5] Downloading modified configuration..."
-if ! wget "http://${SERVER_IP}:${SERVER_PORT}/${CONFIG_FILE}"; then
-    echo "Error: Failed to download configuration file!"
+check_mtd_empty() {
+    hexdump -C "$MTD_DEVICE" | head -n 1 | grep -q "ff ff ff ff"
+}
+
+check_and_clean_existing_files
+
+echo "🔄 Downloading tozed_param..."
+if ! wget -q "$TOZED_PARAM_URL" -O tozed_param; then
+    echo "❌ Failed to download tozed_param from $TOZED_PARAM_URL"
     exit 1
 fi
 
-# Verify file exists
-if [ ! -f "${CONFIG_FILE}" ]; then
-    echo "Error: Configuration file not found after download!"
+echo "📁 Placing modified configuration file..."
+mv -f tozed_param "$TOZED_PARAM_PATH"
+
+echo "🧹 Erasing existing configuration..."
+if ! mtd erase "$MTD_CONF"; then
+    echo "❌ Failed to erase MTD partition: $MTD_CONF"
     exit 1
 fi
 
-# Place file
-echo "[2/5] Installing configuration file..."
-if ! mv "${CONFIG_FILE}" "/etc/${CONFIG_FILE}"; then
-    echo "Error: Failed to move configuration file!"
+sleep 2
+
+if check_mtd_empty; then
+    echo "✅ MTD partition erased successfully."
+else
+    echo "❌ MTD partition not properly erased!"
     exit 1
 fi
 
-# Erase partition
-echo "[3/5] Erasing configuration partition..."
-if ! mtd erase "${MTD_PARTITION}"; then
-    echo "Error: Failed to erase MTD partition!"
-    exit 1
-fi
+sleep 2
 
-# Wait and verify erase
-echo "[4/5] Verifying partition erase..."
-sleep "${WAIT_TIME}"
-if ! check_mtd_empty; then
-    echo "Error: MTD partition not properly erased!"
-    exit 1
-fi
-
-# Apply configuration
-echo "[5/5] Applying new configuration..."
-if ! cfgmgr -u "${CONFIG_FILE}"; then
-    echo "Error: Failed to update configuration!"
+echo "⚙️ Applying new configuration..."
+if ! cfgmgr -u "$TOZED_PARAM_PATH"; then
+    echo "❌ Failed to upload configuration."
     exit 1
 fi
 
 if ! cfgmgr -b; then
-    echo "Error: Failed to backup configuration!"
+    echo "❌ Failed to build configuration."
     exit 1
 fi
 
-# Success
-echo "----------------------------------------------------------------"
-echo "Success! Configuration has been updated."
-echo "Please reset the device to apply changes."
-echo "----------------------------------------------------------------"
+if check_mtd_empty; then
+    echo "❌ MTD partition is still empty after applying configuration!"
+    exit 1
+else
+    echo "✅ Configuration applied successfully."
+fi
+
+echo "🎉 Done! Please reset the device to apply changes."
