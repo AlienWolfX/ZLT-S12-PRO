@@ -39,17 +39,55 @@ def parse_bands(hex_value):
     
     return result
 
+def generate_band_hex(bands):
+    """
+    Generate hex value to enable specific bands
+    
+    Args:
+        bands (list): List of band numbers to enable (1-based)
+    
+    Returns:
+        str: Hex string that enables specified bands
+    """
+    value = 0
+    
+    for band in [b-1 for b in bands]:
+        if (band & 0x20) == 0:
+            value |= 1 << (band & 0x1f)
+        else:
+            value |= 1 << (band & 0x1f) << 32
+    
+    return f"{value:X}"
+
 def main():
+    ENABLE_BAND_GENERATOR = True
     
     test_values = [
-        "FFFFFFFF", # All bands enabled
-        "18008000005" # Example from tozed_param
+        "FFFFFFFFFF", 
+        "18008000005" 
     ]
     
+    print("Current Band Configurations:\n")
     for hex_value in test_values:
         bands = parse_bands(hex_value)
         print(f"Hex value: {hex_value}")
         print(f"Enabled bands: {bands}\n")
+    
+    if ENABLE_BAND_GENERATOR:
+        test_cases = [
+            list(range(1, 42)),  
+            list(range(1, 6)),   
+            [1, 3, 7, 8, 20]  
+        ]
+        
+        print("Band Configuration Generator\n")
+        
+        for bands in test_cases:
+            hex_value = generate_band_hex(bands)
+            print(f"Bands to enable: {bands}")
+            print(f"Hex value: {hex_value}")
+            enabled = parse_bands(hex_value)
+            print(f"Verification - Enabled bands: {enabled}\n")
 
 if __name__ == "__main__":
     main()
