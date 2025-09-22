@@ -1,83 +1,85 @@
 # ZLT-S12-PRO
 
-A repository of Information regarding TOZED S12 PRO (Philippines)
+A repository containing research and tools for the TOZED S12 PRO router (Philippines version).
 
 > [!NOTE]
-> I haven't tested my findings yet with devices outside Philippines but in theory it should work.
+> While testing has been conducted on Philippine devices, these methods should theoretically work on all regional variants.
 
-## Preamble
+## Introduction
 
-ZLT S12 Pro is a CAT6 LTE device by SZTOZED running on a highly modified build of OpenWRT
+The ZLT S12 Pro is a CAT6 LTE router manufactured by SZTOZED, running on a customized OpenWRT build.
 
-### User Types
+### User Access Levels
 
-The device has three types of users: **Web User**, who has limited access to the system; **General User**(tech), who has the same UI as the General User but with additional tools under the settings; and **Senior User**(superadmin), who has full access to the system, including unlocking the device and other critical functionalities.
+The device implements three distinct user types:
 
-### Param file
+1. **Web User**
+   - Basic access level with limited system functionality
 
-The tozed-param file holds the critical configuration for generating password for each user and some other device settings.
+2. **General User (tech)**
+   - Standard web interface plus additional settings tools
+   - Enhanced configuration options
 
-#### Show Hidden Settings
+3. **Senior User (superadmin)**
+   - Full system access
+   - Device unlocking capabilities
+   - Access to critical system functions
 
-> [!NOTE]
-> I managed to make it permanent :D
+### Configuration System
 
-The current Senior user is restricted to a certain level. We need to change the level to '1' for it to work. You need to find `api.lua` and edit it as follows:
+The system uses a `tozed_param` file as its primary configuration store. This file contains critical settings including:
+
+- User password generation rules
+- Access control parameters
+- System configuration values
+- Device customization options
+
+Example configuration:
 
 ```lua
-elseif (userSign == 'TZ_SUPER_USERNAME') then
-	tz_answer["auth"] = web_info["web_operator_show_hide_pref"]
-    tz_answer["level"] = "2"
+export TZSYSTEM_CUSTOMER_SOFT_VERSION="6.36"
+export TZSYSTEM_SN_GENERATE_TYPE="0"
+export TZSYSTEM_NO_UPDATE_TR069_CONFIG="0"
+export TZSYSTEM_CUSTOMER_TYPE="ZLT S12 PRO"
+export TZSYSTEM_CUSTOMER_SN_PREFIX="S12U"
 ```
+
+The configuration system consists of two main components:
+
+1. `tozed_tool`: Handles
+   - User password generation
+   - Telnet access control
+   - WiFi configuration
+   - System parameters
+
+2. `cfgmgr`: Manages the configuration file
+   - Generates the tozed-conf partition
+   - Handles encryption and compression
+   - Creates backup checksums (.chk files)
+
+## Access Methods
 
 ### Telnet Access
 
-This section details the telnet password generation algorithm that was discovered through reverse engineering.
+A custom password generation algorithm has been reverse engineered to enable telnet access to the device.
 
-#### Password Generation Algorithm
+#### Password Generator Tool
 
-The router uses a deterministic algorithm based on the device's IMEI number to generate telnet access passwords:
+The repository includes a Python script (`scripts/generate_telnet_pass.py`) that generates valid telnet passwords:
 
-1. Key characteristics:
-   - Uses digits from the IMEI starting at index 7
-   - Processes 8 consecutive digits to generate an 8-digit password
-   - Employs a rolling accumulator algorithm
+- Requires device IMEI as input
+- Processes specific IMEI digits (positions 7-14)
+- Implements the discovered algorithm
+- Produces an 8-digit numeric password
 
-2. Implementation details:
+## Support and Contact
 
-   ```python
-   # For IMEI: "867792xxxxxxxxx"
-   # Uses substring: "xxxxxxxxx"
-   
-   accumulator = 0
-   for i in range(8):
-       digit = int(imei[7+i])
-       accumulator = i + accumulator + digit
-       password[i] = (accumulator % 10) + '0'
-   ```
+For questions, issues, or contributions:
 
-#### Usage
+- Email: [cruizallen2@gmail.com](mailto:cruizallen2@gmail.com)
+- Issues: Use the GitHub issue tracker
+- Pull Requests: Welcome for improvements
 
-A Python script (`scripts/generate_telnet_pass.py`) is provided to generate telnet passwords:
+## License and Copyright
 
-- Takes an IMEI number as input
-- Extracts the relevant digits (positions 7-14)
-- Applies the accumulator algorithm
-- Outputs the 8-digit telnet password
-
-#### Security Notes
-
-- Password generation is deterministic
-- Only requires knowledge of device IMEI
-- No additional entropy or time-based components
-- Pattern is consistent across device reboots
-- IMEI must be exactly 15 digits
-- Generated password is always 8 digits long
-
-### Contact Me
-
-Email: [cruizallen2@gmail.com](mailto:cruizallen2@gmail.com)
-
-### Copyright
-
-Copyright Allen Cruiz 2025
+Copyright © 2025 Allen Cruiz. All rights reserved.
