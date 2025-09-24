@@ -1,10 +1,8 @@
 #!/bin/sh
 
-# read -p 'Username: ' USERNAME
-# read -sp 'Password: ' PASSWORD
-USERNAME='admin'
-# PASSWORD='Globe@81F3'
-PASSWORD='Globe@63C3'
+read -p 'Username: ' USERNAME
+read -sp 'Password: ' PASSWORD
+
 
 echo
 
