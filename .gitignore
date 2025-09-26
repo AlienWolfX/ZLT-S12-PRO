@@ -13,3 +13,4 @@ dump_reverse/*
 .env
 *.pyc
 __pycache__/
+test/*
