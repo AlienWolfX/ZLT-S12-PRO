@@ -2,7 +2,7 @@
 # Copyright (c) 2025 AlienWolfX
 # Script to sync the modified tozed_param file to the device's mtd7 partition
 
-TOZED_PARAM_URL="http://192.168.254.126:8000/tozed_param"
+TOZED_PARAM_URL="URL_HERE"
 TOZED_PARAM_PATH="/etc/tozed_param"
 TOZED_PARAM_CHK_PATH="/etc/tozed_param.chk"
 MTD_DEVICE="/dev/mtd7"
