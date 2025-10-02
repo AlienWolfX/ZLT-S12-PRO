@@ -54,9 +54,9 @@ fi
 sleep 2
 
 if check_mtd_empty; then
-    echo "✅ MTD partition erased successfully."
+    echo "✅ MTD partition was erased successfully."
 else
-    echo "❌ MTD partition not properly erased!"
+    echo "❌ MTD partition was not properly erased!"
     exit 1
 fi
 
@@ -77,7 +77,7 @@ if check_mtd_empty; then
     echo "❌ MTD partition is still empty after applying configuration!"
     exit 1
 else
-    echo "✅ Configuration applied successfully."
+    echo "✅ Configuration was applied successfully."
 fi
 
 echo "🎉 Done! Please reset the device to apply changes."
