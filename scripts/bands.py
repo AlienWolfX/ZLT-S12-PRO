@@ -1,15 +1,7 @@
-def parse_bands(hex_value):
-    """
-    Parse band configuration from hex value into list of enabled bands.
-    For example: "FFFFFFFF" enables all bands from 1-50
-    
-    Args:
-        hex_value (str): Hex string representing enabled bands
-    
-    Returns:
-        str: Space-separated string of enabled band numbers
-    """
-    
+# Copyright (c) 2024 AlienWolfX
+# Used to parse and generate band configuration hex values
+
+def parse_bands(hex_value): 
     value = int(hex_value, 16)
     
     
@@ -40,15 +32,6 @@ def parse_bands(hex_value):
     return result
 
 def generate_band_hex(bands):
-    """
-    Generate hex value to enable specific bands
-    
-    Args:
-        bands (list): List of band numbers to enable (1-based)
-    
-    Returns:
-        str: Hex string that enables specified bands
-    """
     value = 0
     
     for band in [b-1 for b in bands]:
