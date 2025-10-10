@@ -57,21 +57,6 @@ The configuration system consists of two main components:
    - Handles encryption and compression
    - Creates backup checksums (.chk files)
 
-## Access Methods
-
-### Telnet Access
-
-A custom password generation algorithm has been reverse engineered to enable telnet access to the device.
-
-#### Password Generator Tool
-
-The repository includes a Python script (`scripts/generate_telnet_pass.py`) that generates valid telnet passwords:
-
-- Requires device IMEI as input
-- Processes specific IMEI digits (positions 7-14)
-- Implements the discovered algorithm
-- Produces an 8-digit numeric password
-
 ## Support and Contact
 
 For questions, issues, or contributions:

@@ -16,3 +16,4 @@ __pycache__/
 test/*
 scripts/export_config/*
 scripts/decrypt_export.py
+.vscode/*
