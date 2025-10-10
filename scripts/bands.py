@@ -1,4 +1,4 @@
-# Copyright (c) 2024 AlienWolfX
+# Copyright (c) 2025 Allen Cruiz
 # Used to parse and generate band configuration hex values
 
 def parse_bands(hex_value): 

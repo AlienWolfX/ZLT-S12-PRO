@@ -1,5 +1,5 @@
 #!/bin/bash
-# Copyright (c) 2025 AlienWolfX
+# Copyright (c) 2025 Allen Cruiz
 
 HEX_STRING="FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF" # Display All
 

@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2025 AlienWolfX
+# Copyright (c) 2025 Allen Cruiz
 # Script to sync the modified tozed_param file to the device's mtd7 partition
 
 TOZED_PARAM_URL="URL_HERE"

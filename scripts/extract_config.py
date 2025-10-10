@@ -1,4 +1,4 @@
-# Copyright (c) 2025 AlienWolfX
+# Copyright (c) 2025 Allen Cruiz
 # Used to extract config from tozed-conf - EXTRACTION ONLY
 
 import os
