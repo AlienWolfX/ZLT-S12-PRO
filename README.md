@@ -2,7 +2,7 @@
 
 A repository containing information and tools for the TOZED S12 PRO router.
 
-> [!NOTE]
+> [!IMPORTANT]
 > While testing has been conducted on Philippine devices, these methods should theoretically work on all regional variants.
 
 ## Introduction
@@ -48,7 +48,7 @@ The device implements different user types for each country, with varying levels
 2. **Operator**
    - Full system access, enabling advanced configuration and management.
 
->[!NOTE]
+>[!TIP]
 > Even with superadmin or operator account passwords, the settings displayed are still limited by the value of `TZ_WEB_OPERATOR_SHOW_HIDE_PREF`
 
 ## Unlocking for Philippines Version
@@ -82,3 +82,7 @@ For questions, issues, or contributions:
 ## License and Copyright
 
 Copyright © 2025 Allen Cruiz. All rights reserved.
+
+## Unlocking/Operator Account for Sri Lankan Version
+
+At the time of writing, I have been receiving emails about unlocking the Sri Lankan version of the ZLT S12 PRO. Unfortunately, I cannot assist until one of you provides a firmware dump for the Sri Lankan version of the device!.
