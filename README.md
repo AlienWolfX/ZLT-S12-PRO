@@ -1,13 +1,11 @@
 # ZLT-S12-PRO
 
-A repository containing information and tools for the TOZED S12 PRO router.
-
 > [!IMPORTANT]
 > While testing has been conducted on Philippine devices, these methods should theoretically work on all regional variants.
 
 ## Introduction
 
-ZLT S12 is a high-performance wireless communication product developedby Guangzhou Tozed Kangwei Intelligent Technology Co., Ltd based on 4G network requirements. It is mainly used for data transmission services,equipment monitoring, wireless routing and other functions. ZLT S12 adopts high-performance processor, which can process protocol and large amount of data at high speed. It can be used with a variety of 4G CAT4 module, providing 802.11b/g/n Wi-Fi access. It also features a modified build of OpenWRT.
+ZLT S12 is a high-performance wireless communication product developed by Guangzhou Tozed Kangwei Intelligent Technology Co., Ltd based on 4G network requirements. It is mainly used for data transmission services,equipment monitoring, wireless routing and other functions. ZLT S12 adopts high-performance processor, which can process protocol and large amount of data at high speed. It can be used with a variety of 4G CAT4 module, providing 802.11b/g/n Wi-Fi access. It also features a modified build of OpenWRT.
 
 ## Progress
 
