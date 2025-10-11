@@ -82,7 +82,3 @@ For questions, issues, or contributions:
 ## License and Copyright
 
 Copyright © 2025 Allen Cruiz. All rights reserved.
-
-## Unlocking/Operator Account for Sri Lankan Version
-
-At the time of writing, I have been receiving emails about unlocking the Sri Lankan version of the ZLT S12 PRO. Unfortunately, I cannot assist until one of you provides a firmware dump for the Sri Lankan version of the device!.
