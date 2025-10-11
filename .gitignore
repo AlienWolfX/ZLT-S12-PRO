@@ -16,4 +16,7 @@ __pycache__/
 test/*
 scripts/export_config/*
 scripts/decrypt_export.py
+scripts/decrypt_export.sh
+scripts/mod.sh
+scripts/gen_telnet_pass.sh
 .vscode/*
