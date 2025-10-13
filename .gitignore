@@ -16,7 +16,7 @@ __pycache__/
 test/*
 scripts/export_config/*
 scripts/decrypt_export.sh
-scripts/mod.sh
+scripts/export_config_mod.sh
 scripts/ext_conf_mtd7.py
 scripts/gen_mtd7.sh
 src/*
