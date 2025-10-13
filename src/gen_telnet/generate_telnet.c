@@ -10,7 +10,7 @@ int main() {
     int accumulator = 0;
 
     printf("Enter IMEI: ");
-    scanf("%15s", imei);
+    scanf_s("%15s", imei);
 
     // process 8 digits starting from index 7
     for (int i = 0; i < 8; i++) {

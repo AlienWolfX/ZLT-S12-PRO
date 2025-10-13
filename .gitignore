@@ -18,5 +18,7 @@ scripts/export_config/*
 scripts/decrypt_export.py
 scripts/decrypt_export.sh
 scripts/mod.sh
+scripts/extract_config.py
 scripts/gen_telnet_pass.sh
+scripts/generate_config.sh
 .vscode/*
