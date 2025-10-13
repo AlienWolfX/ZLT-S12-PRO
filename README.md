@@ -59,7 +59,7 @@ Follow these steps to unlock the device:
 4. **Edit Configuration**: Open `etc/config/tozed` and replace `option TZ_SYSTEM_TELNET_ENABLE '0'` with `option TZ_SYSTEM_TELNET_ENABLE '1'`.
 5. **Recompile Configuration**: Run `sh mod.sh -c` to recompile the configuration file.
 6. **Upload Configuration**: Upload the modified configuration back to the device and wait for it to reboot.
-7. **Enable Telnet**: Run `telnet 192.168.254.254`. Use `root` as the username and the output of `sh gen_telnet_pass.sh xxxxxxxxxxxxxxx` as the password.
+7. **Enable Telnet**: Run `telnet 192.168.254.254`. Use `root` as the username and the output of `gen_telnet_pwd -i xxxxxxxxxxxxx` as the password.
 8. **Access Temporary Directory**: Navigate to `/tmp` using `cd /tmp`.
 9. **Download Script**: Run `wget http://{URL}/generate_config.sh` to download the script.
 10. **Set Permissions**: Add execution permissions using `chmod +x generate_config.sh` and execute the script.
