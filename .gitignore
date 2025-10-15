@@ -15,10 +15,9 @@ dump_reverse/*
 __pycache__/
 test/*
 scripts/export_config/*
-scripts/decrypt_export.sh
-scripts/export_config_mod.sh
 scripts/ext_conf_mtd7.py
 scripts/gen_mtd7.sh
 scripts/gen_all_user_pwd.py
 src/*
 .vscode/*
+firm.txt
