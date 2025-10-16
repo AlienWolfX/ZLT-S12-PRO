@@ -1,7 +1,7 @@
 # ZLT-S12-PRO
 
 > [!IMPORTANT]
-> While testing has been conducted on Philippine devices, these methods should theoretically work on all regional variants.
+> ONLY FOR GLOBE(PHILIPPINES) VERSION.
 
 ## Introduction
 
@@ -11,21 +11,14 @@ ZLT S12 is a high-performance wireless communication product developed by Guangz
 
 Here is the current progress of the project:
 
-- **Philippines**:
-  - Tech and Superadmin account generation.
-  - Telnet password generation
-  - Unlocking
-  - Configuration file decryption
-
-- **Sri Lanka**:
-  - Operator account generation.
-  - Configuration file decryption
+- Tech and Superadmin account generation.
+- Telnet password generation
+- Unlocking
+- Configuration file decryption
 
 ### User Access Levels
 
 The device implements different user types for each country, with varying levels of access and functionality:
-
-#### Philippines Version
 
 1. **Web User**
    - Basic access level with limited system functionality.
@@ -38,18 +31,10 @@ The device implements different user types for each country, with varying levels
    - Full system access, including device unlocking capabilities.
    - Access to critical system functions for complete control.
 
-#### Sri Lanka Version
-
-1. **Web User**
-   - Basic access level with limited system functionality.
-
-2. **Operator**
-   - Full system access, enabling advanced configuration and management.
-
 >[!TIP]
 > Even with superadmin or operator account passwords, the settings displayed are still limited by the value of `TZ_WEB_OPERATOR_SHOW_HIDE_PREF`
 
-## Unlocking for Philippines Version
+## Unlocking
 
 Follow these steps to unlock the device:
 
@@ -64,10 +49,6 @@ Follow these steps to unlock the device:
 9. **Download Script**: Run `wget http://{URL}/generate_config.sh` to download the script.
 10. **Set Permissions**: Add execution permissions using `chmod +x generate_config.sh` and execute the script.
 11. **Reset Device**: Wait for the script to finish and reset the device using the web interface (do not use the physical reset button).
-
-## Unlocking/Operator Account for Sri Lankan Version
-
-At the time of writing, I have been receiving emails about unlocking the Sri Lankan version of the ZLT S12 PRO. Unfortunately, I cannot assist until one of you provides a firmware dump for the Sri Lankan version of the device!
 
 ## Support and Contact
 
