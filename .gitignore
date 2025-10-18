@@ -23,7 +23,6 @@ config.json
 files/*
 dump_reverse/*
 test/*
-src/*
 
 .vscode/*
 
