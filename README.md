@@ -38,7 +38,7 @@ The device implements different user types for each country, with varying levels
 
 Follow these steps to unlock the device:
 
-1. **Login**: Use the tech account to log in.
+1. **Login**: Use the `superadmin` account to log in.
 2. **Download Configuration**: Download the configuration file from the device.
 3. **Decrypt Configuration**: Run `sh export_config_mod.sh -d` to decrypt and extract the archive.
 4. **Edit Configuration**: Open `etc/config/tozed` and replace `option TZ_SYSTEM_TELNET_ENABLE '0'` with `option TZ_SYSTEM_TELNET_ENABLE '1'`.
