@@ -3,6 +3,14 @@
 > [!IMPORTANT]
 > ONLY FOR GLOBE(PHILIPPINES) VERSION.
 
+Tested on:
+
+| Inline Soft Version | Software Version |
+| ------------------: | :--------------: |
+|              6.35.2 |       6.36       |
+
+For recent firmware versions, I may need to obtain a dump. If you have one, kindly send it to my email below.
+
 ## Introduction
 
 ZLT S12 is a high-performance wireless communication product developed by Guangzhou Tozed Kangwei Intelligent Technology Co., Ltd based on 4G network requirements. It is mainly used for data transmission services,equipment monitoring, wireless routing and other functions. ZLT S12 adopts high-performance processor, which can process protocol and large amount of data at high speed. It can be used with a variety of 4G CAT4 module, providing 802.11b/g/n Wi-Fi access. It also features a modified build of OpenWRT.
@@ -21,9 +29,11 @@ Here is the current progress of the project:
 The device implements different user types for each country, with varying levels of access and functionality:
 
 1. **Web User**
+
    - Basic access level with limited system functionality.
 
 2. **General User (tech)**
+
    - Standard web interface with additional settings tools.
    - Enhanced configuration options for advanced users.
 
@@ -31,7 +41,7 @@ The device implements different user types for each country, with varying levels
    - Full system access, including device unlocking capabilities.
    - Access to critical system functions for complete control.
 
->[!TIP]
+> [!TIP]
 > Even with superadmin or operator account passwords, the settings displayed are still limited by the value of `TZ_WEB_OPERATOR_SHOW_HIDE_PREF`
 
 ## Unlocking
