@@ -23,6 +23,7 @@ Here is the current progress of the project:
 - Telnet password generation
 - Unlocking
 - Configuration file decryption
+- `rootfs` modification
 
 ### User Access Levels
 
@@ -59,6 +60,52 @@ Follow these steps to unlock the device:
 9. **Download Script**: Run `wget http://{URL}/generate_config.sh` to download the script.
 10. **Set Permissions**: Add execution permissions using `chmod +x generate_config.sh` and execute the script.
 11. **Reset Device**: Wait for the script to finish and reset the device using the web interface (do not use the physical reset button).
+
+## Rootfs modification
+
+> [!NOTE]
+> Extracting and modifying the rootfs is an advanced operation. Do this on a GNU/Linux system. Always back up the original firmware and have a recovery plan — flashing a bad image can brick the device.
+
+Typical workflow (high level):
+
+1. Dump and back up the firmware/rootfs partition from the device (example uses `mtd3`):
+
+```bash
+dd if=/dev/mtd3 of=firmware.bin bs=4M
+```
+
+2. Extract the rootfs from the firmware (use the provided helper):
+
+```bash
+python3 dump_reverse/extract_rootfs.py firmware.bin
+```
+
+3. Verify the extracted file is a SquashFS image:
+
+```bash
+file extracted_rootfs.bin   # should report: "Squashfs filesystem"
+```
+
+4. Unpack the SquashFS, make your changes, then repack it:
+
+```bash
+unsquashfs -d squashfs-root extracted_rootfs.bin
+# make your modifications inside squashfs-root/
+mksquashfs squashfs-root modified_rootfs.bin -comp xz
+```
+
+5. Inject the modified rootfs back into the firmware image:
+
+```bash
+python3 dump_reverse/inject_rootfs.py firmware.bin modified_rootfs.bin -o modified_firmware.bin
+```
+
+6. Flash the modified firmware to the device (example uses `mtd`):
+
+```bash
+mtd write modified_firmware.bin firmware
+reboot
+```
 
 ## Support and Contact
 

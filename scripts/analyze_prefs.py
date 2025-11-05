@@ -31,7 +31,7 @@ if __name__ == "__main__":
 
     print("Analyzing TZWEB_OPERATOR_SHOW_HIDE_PREF:")
     operator_binary = hex_to_binary(operator_pref)
-    analyze_binary(operator_binary)
+    # analyze_binary(operator_binary)
 
     print("\nEnabling all features for TZWEB_OPERATOR_SHOW_HIDE_PREF:")
     all_enabled_operator_pref = enable_all_features(operator_pref)
@@ -39,7 +39,7 @@ if __name__ == "__main__":
 
     print("\nAnalyzing New TZWEB_OPERATOR_SHOW_HIDE_PREF:")
     new_operator_binary = hex_to_binary(all_enabled_operator_pref)
-    analyze_binary(new_operator_binary)
+    # analyze_binary(new_operator_binary)
 
     highest_bit = 153
 

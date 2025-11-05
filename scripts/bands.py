@@ -43,11 +43,11 @@ def generate_band_hex(bands):
     return f"{value:X}"
 
 def main():
-    ENABLE_BAND_GENERATOR = True
+    ENABLE_BAND_GENERATOR = False
     
-    test_values = [
-        "FFFFFFFFFF", 
-        "18008000005" 
+    test_values = [ 
+        "18008000005",
+        "1FFFFFFFFFF"
     ]
     
     print("Current Band Configurations:\n")
@@ -58,9 +58,7 @@ def main():
     
     if ENABLE_BAND_GENERATOR:
         test_cases = [
-            list(range(1, 42)),  
-            list(range(1, 6)),   
-            [1, 3, 7, 8, 20]  
+            list(range(1, 42)),   
         ]
         
         print("Band Configuration Generator\n")

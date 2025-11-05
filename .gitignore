@@ -1,4 +1,4 @@
-scripts/.venv/*
+.venv/*
 
 notes.txt
 logs/*
@@ -8,22 +8,17 @@ scripts/config/*
 scripts/obsolete/*
 scripts/payload/*
 scripts/export_config/*
-scripts/ext_conf_mtd7.py
-scripts/gen_mtd7.sh
-scripts/gen_all_user_pwd.py
+files/*
+dump_reverse/*
+test/*
+.vscode/*
+scripts/deprecated/*
 
 *.bin
 *.so
 *.pyc
 __pycache__/
 
-config.json
-.env
 
-files/*
-dump_reverse/*
-test/*
-
-.vscode/*
 
 firm.txt
