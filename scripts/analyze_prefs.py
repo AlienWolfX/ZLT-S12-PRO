@@ -1,3 +1,6 @@
+# Copyright (c) 2025 Allen Cruiz
+# Used to analyze and manipulate preference hex values
+
 def hex_to_binary(hex_value):
     """Convert a hexadecimal string to a binary string."""
     try:

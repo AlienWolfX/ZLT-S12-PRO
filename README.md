@@ -1,7 +1,7 @@
 # ZLT-S12-PRO
 
 > [!IMPORTANT]
-> ONLY FOR GLOBE(PHILIPPINES) VERSION.
+> ONLY FOR GLOBE (PHILIPPINES) VERSION.
 
 Tested on:
 
@@ -9,11 +9,11 @@ Tested on:
 | ------------------: | :--------------: |
 |              6.35.2 |       6.36       |
 
-For recent firmware versions, I may need to obtain a dump. If you have one, kindly send it to my email below.
+For recent firmware versions, I may need a device dump. If you have one, please send it to my email below.
 
 ## Introduction
 
-ZLT S12 is a high-performance wireless communication product developed by Guangzhou Tozed Kangwei Intelligent Technology Co., Ltd based on 4G network requirements. It is mainly used for data transmission services,equipment monitoring, wireless routing and other functions. ZLT S12 adopts high-performance processor, which can process protocol and large amount of data at high speed. It can be used with a variety of 4G CAT4 module, providing 802.11b/g/n Wi-Fi access. It also features a modified build of OpenWRT.
+ZLT S12 is a high-performance wireless communication product developed by Guangzhou Tozed Kangwei Intelligent Technology Co., Ltd based on 4G network requirements. It is mainly used for data transmission services, equipment monitoring, wireless routing, and other functions. ZLT S12 adopts a high-performance processor that can process protocols and handle large amounts of data at high speed. It can be used with a variety of 4G CAT4 module, providing 802.11b/g/n Wi-Fi access. It also features a modified build of OpenWRT.
 
 ## Progress
 
@@ -65,10 +65,12 @@ Follow these steps to unlock the device:
 
 > [!NOTE]
 > Extracting and modifying the rootfs is an advanced operation. Do this on a GNU/Linux system. Always back up the original firmware and have a recovery plan — flashing a bad image can brick the device.
+> [!WARNING]
+> Rootfs modification is only tested on the Philippines version of the device.
 
 Typical workflow (high level):
 
-1. Dump and back up the firmware/rootfs partition from the device (example uses `mtd3`):
+1. Dump and back up the firmware partition from the device:
 
 ```bash
 dd if=/dev/mtd3 of=firmware.bin bs=4M
@@ -89,9 +91,9 @@ file extracted_rootfs.bin   # should report: "Squashfs filesystem"
 4. Unpack the SquashFS, make your changes, then repack it:
 
 ```bash
-unsquashfs -d squashfs-root extracted_rootfs.bin
+unsquashfs -d squashfs-root extracted_rootfs.bin # Extract
 # make your modifications inside squashfs-root/
-mksquashfs squashfs-root modified_rootfs.bin -comp xz
+mksquashfs squashfs-root modified_rootfs.bin -comp xz # Repack
 ```
 
 5. Inject the modified rootfs back into the firmware image:
@@ -100,7 +102,7 @@ mksquashfs squashfs-root modified_rootfs.bin -comp xz
 python3 dump_reverse/inject_rootfs.py firmware.bin modified_rootfs.bin -o modified_firmware.bin
 ```
 
-6. Flash the modified firmware to the device (example uses `mtd`):
+6. Flash the modified firmware to the device:
 
 ```bash
 mtd write modified_firmware.bin firmware
@@ -117,4 +119,4 @@ For questions, issues, or contributions:
 
 ## License and Copyright
 
-Copyright © 2025 Allen Cruiz. All rights reserved.
+Copyright © 2026 Allen Cruiz. All rights reserved.
