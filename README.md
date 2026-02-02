@@ -65,6 +65,7 @@ Follow these steps to unlock the device:
 
 > [!NOTE]
 > Extracting and modifying the rootfs is an advanced operation. Do this on a GNU/Linux system. Always back up the original firmware and have a recovery plan — flashing a bad image can brick the device.
+
 > [!WARNING]
 > Rootfs modification is only tested on the Philippines version of the device.
 
