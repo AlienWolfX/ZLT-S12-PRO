@@ -22,6 +22,7 @@ Here is the current progress of the project:
 - Tech and Superadmin account generation.
 - Telnet password generation
 - Unlocking
+- Dashboard Modification (Temporary)
 - Configuration file decryption
 - `rootfs` modification
 
@@ -109,6 +110,26 @@ python3 dump_reverse/inject_rootfs.py firmware.bin modified_rootfs.bin -o modifi
 mtd write modified_firmware.bin firmware
 reboot
 ```
+
+## Dashboard Modification
+
+> [!NOTE]
+> Not persistent defaults back if reset
+
+Follow these steps to modify the dashboard:
+
+1. **Locate Web Files**: Navigate to the `scripts/web_mod/tz_www` directory, which contains the original web interface files.
+2. **Make Modifications**: Edit the files in the `tz_www` folder as needed.
+3. **Prepare Build**: Ensure your modified `tz_www` folder is placed in the same directory as `web_mod.sh` (located at `scripts/web_mod/`).
+4. **Build Package**: Run the build script:
+   ```bash
+   sh web_mod.sh
+   ```
+5. **Upload to Device**: 
+   - Log in to the device using the `superadmin` account.
+   - Upload the generated ZIP file through the dashboard.
+   - Wait for the device to apply changes and reboot.
+
 
 ## Support and Contact
 
