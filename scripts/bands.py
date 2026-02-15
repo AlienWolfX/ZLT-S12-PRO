@@ -3,10 +3,8 @@
 
 def parse_bands(hex_value): 
     value = int(hex_value, 16)
-    
-    
+
     result = ""
-    
     
     for band in range(50):
         
@@ -16,11 +14,9 @@ def parse_bands(hex_value):
         else:
             mask_high = 1 << (band & 0x1f)
             mask_low = 0
-            
         
         value_low = value & 0xFFFFFFFF
         value_high = value >> 32
-        
         
         if (value_low & mask_low) != 0 or (value_high & mask_high) != 0:
             
