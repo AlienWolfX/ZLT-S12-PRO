@@ -49,6 +49,8 @@ int main(int argc, char **argv) {
 
     password[8] = '\0';
 
+    printf("URL: http://192.168.254.254\n");
+    printf("Username: root\n");
     printf("Telnet Password: %s\n", password);
 
     return 0;

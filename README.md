@@ -52,9 +52,9 @@ Follow these steps to unlock the device:
 
 1. **Login**: Use the `superadmin` account to log in.
 2. **Download Configuration**: Download the configuration file from the device.
-3. **Decrypt Configuration**: Run `sh export_config_mod.sh -d` to decrypt and extract the archive.
+3. **Decrypt Configuration**: Run `sh export_config_mod.sh -d` to decrypt and extract the configuration.
 4. **Edit Configuration**: Open `etc/config/tozed` and replace `option TZ_SYSTEM_TELNET_ENABLE '0'` with `option TZ_SYSTEM_TELNET_ENABLE '1'`.
-5. **Recompile Configuration**: Run `sh export_config_mod.sh -c` to recompile the configuration file.
+5. **Recompile Configuration**: Run `sh export_config_mod.sh -c` to compress and encrypt the configuration file.
 6. **Upload Configuration**: Upload the modified configuration back to the device and wait for it to reboot.
 7. **Enable Telnet**: Run `telnet 192.168.254.254`. Use `root` as the username and the output of `gen_telnet_pwd -i xxxxxxxxxxxxx` as the password.
 8. **Access Temporary Directory**: Navigate to `/tmp` using `cd /tmp`.
@@ -65,7 +65,7 @@ Follow these steps to unlock the device:
 ## Rootfs modification
 
 > [!NOTE]
-> Extracting and modifying the rootfs is an advanced operation. Do this on a GNU/Linux system. Always back up the original firmware and have a recovery plan — flashing a bad image can brick the device.
+> Extracting and modifying the rootfs is an advanced operation. Do this on a GNU/Linux system. Always back up the original firmware and have a recovery plan — flashing a bad image can brick the device!.
 
 > [!WARNING]
 > Rootfs modification is only tested on the Philippines version of the device.

@@ -1,24 +1,24 @@
 # Generating Telnet Password
 
-1.Start with the IMEI The IMEI is a 15-digit number unique to each device. For example:
+1. Start with the IMEI The IMEI is a 15-digit number unique to each device. For example:
 
 ```text
 8612345678901234
 ```
 
-2.Ignore the first 7 digits Only the last 8 digits are used to generate the password. From the example above, we extract:
+2. Ignore the first 7 digits Only the last 8 digits are used to generate the password. From the example above, we extract:
 
 ```text
 78901234
 ```
 
-3.Initialize a running total (accumulator) This is a number that starts at zero and gets updated as we process each digit.
+3. Initialize a running total (accumulator) This is a number that starts at zero and gets updated as we process each digit.
 
-4.Process each of the 8 digits one by one For each digit:
+4. Process each of the 8 digits one by one For each digit:
 
 ## Example Walkthrough
 
-Let’s say the last 8 digits are: `78901234` (processed in order: 7, 8, 9, 0, 1, 2, 3, 4).
+From the sample IMEI from above the last 8 digits are: `78901234` (processed in order: 7, 8, 9, 0, 1, 2, 3, 4).
 
 | Step | Input digit | Accumulator calculation | Result digit |
 | ---: | :---------: | :---------------------- | :----------: |
